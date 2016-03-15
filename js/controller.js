@@ -21,8 +21,7 @@ var controller = {
     setInterval(function(){
       PieceModel.movePiece(that.currentPiece);
       view.renderPiece(that.currentPiece);
-
-      PieceModel.pieceHitsBottom();
+      PieceModel.stopPiece();
     }, 100);
   },
 
@@ -31,9 +30,14 @@ var controller = {
     controller.direction = "";
   },
 
-  keepBottomPiece: function() {
-    view.pieceHitsBottom();
+  stop: function() {
+    view.stopPiece();
+  }, 
+
+  getFullDivs: function(){
+    return view.getFullDivs();
   }
+
 
 
 }

@@ -4,6 +4,7 @@ var view = {
     // register event listeners
     this.eventListeners();
 
+
   },
 
   renderBoard: function(){
@@ -32,12 +33,12 @@ var view = {
     $(divToAdd).addClass('block');
   },
 
-  pieceHitsBottom: function() {
+  stopPiece: function() {
     var x = controller.currentPiece.x;
     var y = controller.currentPiece.y;
 
     var divToAdd = $('[data-y=' + y + '][data-x=' + x + ']');
-    $(divToAdd).addClass('full')
+    $(divToAdd).addClass('full');
   },
 
 
@@ -59,8 +60,11 @@ var view = {
       }
       event.preventDefault();
       controller.moveSideways();
-    });
-    
+    }); 
+  }, 
+
+  getFullDivs: function(){
+    return $('.full')
   }
 
 
