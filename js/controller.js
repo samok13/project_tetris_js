@@ -1,10 +1,13 @@
 var controller = {
 
   np: PieceModel.generatePiece(),
+  currentPiece: null,
+  direction: '',
 
   init: function(){
     BoardModel.buildBoard();
-    // view.init();
+    this.currentPiece = PieceModel.generatePiece();
+    view.init();
     this.gameLoop();
   
   },
@@ -16,9 +19,14 @@ var controller = {
   gameLoop: function(){
     var that = this;
     setInterval(function(){
-      PieceModel.movePiece(that.np);
-      view.init(that.np);
+      PieceModel.movePiece(that.currentPiece);
+      view.renderBoard();
+      view.renderPiece(that.currentPiece);
     }, 1000);
+  },
+
+  moveSideways: function(){
+    PieceModel.moveHorizontal();
   }
 
 

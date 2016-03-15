@@ -1,9 +1,9 @@
 var view = {
 
   init: function(piece){
-    this.renderBoard();
-    this.renderPiece(piece);
     // register event listeners
+    this.eventListeners();
+
   },
 
   renderBoard: function(){
@@ -19,8 +19,6 @@ var view = {
     }   
   },
 
-
-
   renderPiece: function(piece) {
     // set a class on the div that matches the piece's x and y coords
     var x = piece.x;
@@ -30,9 +28,32 @@ var view = {
     // add class to current block
     $(divToAdd).addClass('block');
     // remove class from row above
-    var divToRemove = $('[data-y=' + y-1 + '][data-x=' + x + ']');
+    var divToRemove = $('[data-y=' + (y-1) + '][data-x=' + x + ']');
     $(divToRemove).removeClass('block');
   },
+
+  eventListeners: function(){
+    $(document).keyup(function(event){
+      switch(event.which){
+        //left
+        case 37:
+        controller.direction = 'left';
+        
+        break;
+
+        //right
+        case 39:
+        controller.direction = 'right';
+        break;
+
+        default: return;
+      }
+      event.preventDefault();
+      controller.moveSideways();
+    });
+    
+  }
+
 
 }
 

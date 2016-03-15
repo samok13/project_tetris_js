@@ -11,8 +11,8 @@ var PieceModel = {
     var x = Math.floor(Math.random()*4);
     var y = 3;
 
-    
-    return new this.Piece(x, y);
+    var currentPiece = new this.Piece(x, y)
+    return currentPiece;
   }, 
 
   movePiece: function(pieceToMove){
@@ -22,6 +22,15 @@ var PieceModel = {
     }
     console.log("piece's y: " + pieceToMove.y)
     console.log("piece's x: " + pieceToMove.x)
+  },
+
+  moveHorizontal: function(){
+    if(controller.direction === 'left'){
+      controller.currentPiece.x -= 1;
+    }
+    else{
+      controller.currentPiece.x += 1;
+    }
   }
 
 }
