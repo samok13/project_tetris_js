@@ -1,0 +1,64 @@
+canvas OR grid of div's with data-x and data-y?
+
+=========================
+board model:
+
+- 10 blocks wide, 20 blocks high
+- 4 hidden rows at the top of the screen where pieces are built
+- pieces stop moving when they touch another piece or the ground
+- row gets cleared when it's full of non-moving pieces
+
+
+array of empty spaces to check if moves are valid?
+
+
+piece types:
+- 2x2 squares
+- 4x1 bars
+- L-shaped (left AND right)
+- s- shaped (left AND right)
+
+
+rotations: build a matrix for each piece?
+[0,0,0,0],
+[0,0,0,0],
+[1,1,1,1],
+[0,0,0,0]
+
+=========================
+block/pieces model:
+
+- has shape, velocity, possible rotations
+- moves as a unit
+
+
+
+
+
+
+
+=========================
+controller:
+
+single game loop interval with the following: 
+- falling piece moves down by one block
+- when a piece stops, a new one is built at the top of the board
+
+
+
+
+
+
+
+
+
+=========================
+view:
+
+render() shows all blocks
+
+
+event listeners for:
+- moving a piece left or right (but not past the edge)
+- tapping the down arrow jumps the piece down until something stops it
+- space bar to rotate
