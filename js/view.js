@@ -7,7 +7,7 @@ var view = {
   },
 
   renderBoard: function(){
-    $("#board").html("");
+    // $("#board").html("");
 
     var board = controller.getBoard();
 
@@ -24,13 +24,22 @@ var view = {
     var x = piece.x;
     var y = piece.y;
 
-    var divToAdd = $('[data-y=' + y + '][data-x=' + x + ']');
+    // remove class from previous block, regardless of location
+    $('.col-xs-1').removeClass('block');
+
     // add class to current block
+    var divToAdd = $('[data-y=' + y + '][data-x=' + x + ']');
     $(divToAdd).addClass('block');
-    // remove class from row above
-    var divToRemove = $('[data-y=' + (y-1) + '][data-x=' + x + ']');
-    $(divToRemove).removeClass('block');
   },
+
+  pieceHitsBottom: function() {
+    var x = controller.currentPiece.x;
+    var y = controller.currentPiece.y;
+
+    var divToAdd = $('[data-y=' + y + '][data-x=' + x + ']');
+    $(divToAdd).addClass('full')
+  },
+
 
   eventListeners: function(){
     $(document).keyup(function(event){

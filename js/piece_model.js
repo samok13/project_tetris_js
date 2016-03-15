@@ -11,8 +11,7 @@ var PieceModel = {
     var x = Math.floor(Math.random()*4);
     var y = 3;
 
-    var currentPiece = new this.Piece(x, y)
-    return currentPiece;
+    controller.currentPiece = new PieceModel.Piece(x, y)
   }, 
 
   movePiece: function(pieceToMove){
@@ -20,17 +19,22 @@ var PieceModel = {
     if (pieceToMove.y < 23) {
       pieceToMove.y += 1;
     }
-    console.log("piece's y: " + pieceToMove.y)
-    console.log("piece's x: " + pieceToMove.x)
   },
 
   moveHorizontal: function(){
-    if(controller.direction === 'left'){
+    if(controller.direction === 'left' && controller.currentPiece.x > 0){
       controller.currentPiece.x -= 1;
-    }
-    else{
+    } else if (controller.direction === 'right' && controller.currentPiece.x < 9) {
       controller.currentPiece.x += 1;
+    } 
+  },
+
+  pieceHitsBottom: function() {
+    if (controller.currentPiece.y === 23) {
+      controller.keepBottomPiece();
+      this.generatePiece();
     }
   }
+
 
 }

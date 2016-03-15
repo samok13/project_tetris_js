@@ -1,13 +1,13 @@
 var controller = {
 
-  np: PieceModel.generatePiece(),
   currentPiece: null,
   direction: '',
 
   init: function(){
     BoardModel.buildBoard();
-    this.currentPiece = PieceModel.generatePiece();
+    PieceModel.generatePiece();
     view.init();
+    view.renderBoard();
     this.gameLoop();
   
   },
@@ -20,13 +20,19 @@ var controller = {
     var that = this;
     setInterval(function(){
       PieceModel.movePiece(that.currentPiece);
-      view.renderBoard();
       view.renderPiece(that.currentPiece);
-    }, 1000);
+
+      PieceModel.pieceHitsBottom();
+    }, 100);
   },
 
   moveSideways: function(){
     PieceModel.moveHorizontal();
+    controller.direction = "";
+  },
+
+  keepBottomPiece: function() {
+    view.pieceHitsBottom();
   }
 
 

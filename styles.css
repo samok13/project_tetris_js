@@ -6,6 +6,6 @@
 }
 
 
-.block {
+.block, .full {
   background-color: purple;
 }
