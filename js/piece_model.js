@@ -17,8 +17,11 @@ var PieceModel = {
 
   movePiece: function(pieceToMove){
     //var pieceToMove = this.generatePiece();
-    pieceToMove.y += 1;
-    console.log(pieceToMove.y);
+    if (pieceToMove.y < 23) {
+      pieceToMove.y += 1;
+    }
+    console.log("piece's y: " + pieceToMove.y)
+    console.log("piece's x: " + pieceToMove.x)
   }
 
 }

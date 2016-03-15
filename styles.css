@@ -1,0 +1,11 @@
+.col-xs-1 {
+  height: 40px;
+  width: 40px;
+  background-color: gray;
+  border: 3px white solid;
+}
+
+
+.block {
+  background-color: purple;
+}

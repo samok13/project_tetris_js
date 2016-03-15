@@ -3,8 +3,9 @@ var controller = {
   np: PieceModel.generatePiece(),
 
   init: function(){
-  BoardModel.buildBoard();
-  this.gameLoop();
+    BoardModel.buildBoard();
+    // view.init();
+    this.gameLoop();
   
   },
 
@@ -14,7 +15,10 @@ var controller = {
 
   gameLoop: function(){
     var that = this;
-    setInterval(function(){PieceModel.movePiece(that.np)}, 1000);
+    setInterval(function(){
+      PieceModel.movePiece(that.np);
+      view.init(that.np);
+    }, 1000);
   }
 
 
