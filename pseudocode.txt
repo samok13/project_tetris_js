@@ -1,7 +1,9 @@
-canvas OR grid of div's with data-x and data-y?
+grid of div's with data-x and data-y
+
+$('div').hasClass('filled')
 
 =========================
-board model:
+board model: (knows about all pieces)
 
 - 10 blocks wide, 20 blocks high
 - 4 hidden rows at the top of the screen where pieces are built
@@ -26,30 +28,47 @@ rotations: build a matrix for each piece?
 [0,0,0,0]
 
 =========================
-block/pieces model:
-
-- has shape, velocity, possible rotations
-- moves as a unit
-
-
-
-
-
-
-
-=========================
-controller:
-
+game/controller:
 single game loop interval with the following: 
 - falling piece moves down by one block
 - when a piece stops, a new one is built at the top of the board
 
+var Game = function() {
+
+  init: function() {
+   // initialize grid
+   // create block
+   // render
+  }
+
+  function Game() {
+    
+  }
+}
+
+startMoving = function() {
+  setInterval(someFunction(), globalInterval)
+}
+
+stopMoving = function() {
+  clearInterval(someFunction())
+}
 
 
+=========================
+block/pieces model:
+
+- has shape, velocity, possible rotations
+- moves as a unit
+- createPiece()
+- movePiece()
 
 
-
-
+function Block() {
+  this.coords = [x,y];
+  this.x = x;
+  this.y = y;
+}
 
 
 =========================
@@ -60,5 +79,7 @@ render() shows all blocks
 
 event listeners for:
 - moving a piece left or right (but not past the edge)
+
+(more advanced:)
 - tapping the down arrow jumps the piece down until something stops it
 - space bar to rotate
