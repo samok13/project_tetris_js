@@ -21,20 +21,42 @@ var PieceModel = {
     }
   },
 
-  moveHorizontal: function(){
-    if(controller.direction === 'left' && controller.currentPiece.x > 0){
-      controller.currentPiece.x -= 1;
-    } else if (controller.direction === 'right' && controller.currentPiece.x < 9) {
-      controller.currentPiece.x += 1;
-    } 
+  // moveHorizontal: function(){
+  //   if(controller.direction === 'left' && controller.currentPiece.x > 0){
+  //     controller.currentPiece.x -= 1;
+  //   } else if (controller.direction === 'right' && controller.currentPiece.x < 9) {
+  //     controller.currentPiece.x += 1;
+  //   } 
 
-  // moveHorizontal:function(){
-  //   var cd = controller.direction
-  //   if(cd === 'left')
-  // }
+  moveHorizontal:function(){
+    var cd = controller.direction;
+    var ccp = controller.currentPiece;
+    var divs = controller.getFullDivs();
+    var moveLeft = false;
+    var moveRight = false;
+    
+    for(var i = 0; i < divs.length; i++){
+      var divx = divs[i].getAttribute('data-x');
+      var divy = divs[i].getAttribute('data-y');
 
-
-
+      if(cd === 'left' && ccp.x > 0 ){
+        if (!(divx == ccp.x-1 && divy == ccp.y+1)){
+          moveLeft = true;
+        }
+      }
+      else if(cd === 'right' && ccp.y < 9){
+        if (!(divx == ccp.x+1 && divy == ccp.y+1)){
+          moveRight = true;
+        }
+      }
+    }
+    
+    if (moveLeft){
+      ccp.x -= 1;
+    }
+    if (moveRight){
+      ccp.x += 1;
+    }
   },
 
   stopPiece: function() {
@@ -44,7 +66,6 @@ var PieceModel = {
     for(var i = 0; i < divs.length; i++){
       var divx = divs[i].getAttribute('data-x');
       var divy = divs[i].getAttribute('data-y');
-      console.log(divx, divy);
 
       // if(controller.direction === 'left'){
       //   if(divx == controller.currentPiece.x-1 && divy == controller.currentPiece.y+1){
