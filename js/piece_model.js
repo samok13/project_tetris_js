@@ -112,59 +112,32 @@ var PieceModel = {
   checkRow: function(){
     var ccp = controller.currentPiece;
     
-    for (var y = 23; y < ccp.y; y--){
+    for (var y = 23; y > ccp.y; y--){
+      console.log('inside first loop');
       var rowYDivs = controller.getRowDivs(y);
+      console.log('row divs set to' + rowYDivs);
       if(rowYDivs.length == 10){
 
         //get highest y value 
-        //loop through all the column divs
+        //loop through all divs in a single row
         for (var x = 0; x < 9; x++){
           var highestYDiv = 23;
-          var colXDiv = controller.getColDivs(x);
+          var colXDivs = controller.getColDivs(x);
 
-          colXDiv.forEach(function(div){
-            var yVal = div.getAttribute('data-y')
-
+          for(var i = 0; i < colXDivs.length; i++){
+            var yVal = colXDivs[i].getAttribute('data-y');
+            console.log(yVal + 'yVal');
             if (yVal < highestYDiv){
-              highestYDiv = yval;
+              highestYDiv = yVal;
+              console.log(highestYDiv + 'highestYDiv');
             }
-          });
-
-        $('full[data-x="'+ x + '"][data-y="' + highestYDiv + '"]').removeClass('full');
+          }
+          $(".full[data-x='"+ x +"'][data-y='" + highestYDiv + "']").removeClass('full'); 
         }
       }
     }
-  }, 
-
-  //have to modify to check all rows.
-    //loop through rows starting with y = 23 up to currentPiece.y
-    //for each value of x (keeping y the same), check if 'full' is on the piece
-      //if 10 fulls in a row
-      //getRowDivs
-      //checkRowDivs.length
-      //if eq 10
-      //remove full class from the row
-        //instead of removing, think about looping through the colDivs, getting the one with the lowest y value and removing 'full'
-
-
-  // checkRows: function(){
-  //   var divs = controller.getFullDivs();
-  //   var rowCounter = 0;
-  //   var yval = 0;
-
-  //   //if there are 10 divs with the same div.y then row full
-  //   for(var x = 0; x <= 9; x++){
-  //     var divx = divs[i].getAttribute('data-x');
-  //     var divy = divs[i].getAttribute('data-y');
-  //   }
-  //   if (divy === yval){
-  //     yval = divy;
-  //     yval += 1;
-  //   }
-  //   if (yval === 9){
-  //     return true;
-  //   }
-    
-  // }
+  }  
 
 }
+
+

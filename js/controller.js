@@ -22,7 +22,7 @@ var controller = {
       PieceModel.movePiece(that.currentPiece);
       PieceModel.stopPiece();
       view.renderPiece(that.currentPiece);
-      //PieceModel.checkRow();
+      PieceModel.checkRow();
     }, 500);
   },
 
