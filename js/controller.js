@@ -20,8 +20,8 @@ var controller = {
     var that = this;
     setInterval(function(){
       PieceModel.movePiece(that.currentPiece);
-      view.renderPiece(that.currentPiece);
       PieceModel.stopPiece();
+      view.renderPiece(that.currentPiece);
     }, 100);
   },
 
