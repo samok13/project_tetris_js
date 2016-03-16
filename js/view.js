@@ -48,7 +48,6 @@ var view = {
         //left
         case 37:
         controller.direction = 'left';
-        
         break;
 
         //right
@@ -56,17 +55,30 @@ var view = {
         controller.direction = 'right';
         break;
 
+        //down arrow
+        case 40:
+        controller.direction = 'fastDown';
+        console.log('fastDown');
+        break;
+
         default: return;
       }
       event.preventDefault();
-      controller.moveSideways();
+      controller.userMove();
     }); 
   }, 
 
   getFullDivs: function(){
     return $('.full')
-  }
+  },
 
+  getColDivs: function(colNum){
+    return $('.full[data-x="' + colNum + '"]');
+  },
+
+  getRowDivs: function(rowNum){
+    return $('.full[data-y="' + rowNum + '"]');
+  }
 
 }
 

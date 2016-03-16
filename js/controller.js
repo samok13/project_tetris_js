@@ -22,11 +22,12 @@ var controller = {
       PieceModel.movePiece(that.currentPiece);
       PieceModel.stopPiece();
       view.renderPiece(that.currentPiece);
-    }, 100);
+      //PieceModel.checkRow();
+    }, 500);
   },
 
-  moveSideways: function(){
-    PieceModel.moveHorizontal();
+  userMove: function(){
+    PieceModel.userMove();
     controller.direction = "";
   },
 
@@ -36,8 +37,14 @@ var controller = {
 
   getFullDivs: function(){
     return view.getFullDivs();
+  },
+
+  getColDivs: function(colNum){
+    return view.getColDivs(colNum);
+  },
+
+  getRowDivs: function(rowNum){
+    return view.getRowDivs(rowNum);
   }
-
-
 
 }
