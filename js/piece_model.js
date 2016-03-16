@@ -1,17 +1,53 @@
 var PieceModel = {
 
-  init: {},
+  shapeTypes: ['square', 'line', 'leftL', 'rightL'],
 
   Piece: function(x, y){
     this.x = x;
     this.y = y;
+    this.blocks =[];
+
+    var shape = PieceModel.shapeTypes[Math.floor(Math.random() * 4)];
+
+    if(shape = 'square'){
+      this.blocks.push(new Block(x,y,this));
+      this.blocks.push()(new Block(x+1,y,this));
+      this.blocks.push()(new Block(x,y+1,this))
+      this.blocks.push()(new Block(x+1,y+1,this))
+    }
+    else if(shape = 'line'){
+      this.blocks.push(new Block(x,y,this));
+      this.blocks.push()(new Block(x+1,y,this));
+      this.blocks.push()(new Block(x+2,y,this));
+      this.blocks.push()(new Block(x+3,y,this));
+    }
+    else if(shape = 'leftL'){
+      this.blocks.push()(new Block(x,y,this));
+      this.blocks.push()(new Block(x,y + 1,this));
+      this.blocks.push()(new Block(x,y + 2,this));
+      this.blocks.push()(new Block(x-1,y + 2,this));
+    }
+    else if(shape = 'rightL'){
+      this.blocks.push()(new Block(x,y,this));
+      this.blocks.push()(new Block(x,y + 1,this));
+      this.blocks.push()(new Block(x,y + 2,this));
+      this.blocks.push()(new Block(x+1,y + 2,this));
+    }
   },
+
+  Block: function (x, y, piece) {
+    this.x = x;
+    this.y = y;
+    this.piece = piece;
+  },
+
 
   generatePiece: function(){
     var x = Math.floor(Math.random()*11);
-    var y = 3;
+    var y = Math.floor(Math.random()*3);
 
-    controller.currentPiece = new PieceModel.Piece(x, y)
+    var piece = new PieceModel.Piece(x, y);
+    controller.currentPiece = piece;
   }, 
 
 
@@ -136,7 +172,7 @@ var PieceModel = {
         }
       }
     }
-  }  
+  },  
 
 }
 
