@@ -186,7 +186,7 @@ var PieceModel = {
           var highestYDiv = 23;
           var colXDivs = controller.getColDivs(x);
 
-          for(var i = 0; i < colXDivs.length; i++){
+          for(var i = 0; i < 23; i++){
             var yVal = colXDivs[i].getAttribute('data-y');
             if (yVal < highestYDiv){
               highestYDiv = yVal;
