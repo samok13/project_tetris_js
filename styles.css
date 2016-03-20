@@ -6,6 +6,6 @@
 }
 
 
-.block, .full {
+.moving-block, .stopped-block {
   background-color: purple;
 }

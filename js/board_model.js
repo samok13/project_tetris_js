@@ -12,13 +12,20 @@ var BoardModel = {
   boardArray: [],
 
   buildBoard: function() {
-    for(var y = 0; y < (HEIGHT+HIDDEN_ROWS); y++){
-      var row = [];
-      for(var x = 0; x < WIDTH; x++){
-        row.push(new PieceModel.Piece(x,y));
-      }
-      this.boardArray.push(row);
-    }
+    // for(var y = 0; y < (HEIGHT+HIDDEN_ROWS); y++){
+    //   var row = [];
+    //   for(var x = 0; x < WIDTH; x++){
+    //     row.push(new PieceModel.Piece(x,y));
+    //   }
+    //   this.boardArray.push(row);
+    // }
   },
+
+  isPositionOnBoard: function(block){
+    if(block.x < 0 || block.x > 9){
+      return false;
+    }
+    return true;
+  }
 
 }

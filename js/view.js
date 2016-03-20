@@ -10,13 +10,13 @@ var view = {
   renderBoard: function(){
     // $("#board").html("");
 
-    var board = controller.getBoard();
+    // var board = controller.getBoard();
     //Need to adjust o render the blocks array not just the piece
 
-    for (var y = 0; y < board.length; y++) {
+    for (var y = 0; y < 24; y++) {
       $("#board").append('<div class="row row'+ y + '"></div>');
       for(var x = 0; x < 10; x++){
-        $('.row'+ y).append('<div class="col-xs-1" data-x='+ x +' data-y='+ y +' ></div>');
+        $('.row'+ y).append('<div class="col-xs-1 cell" data-x='+ x +' data-y='+ y +' ></div>');
       }
     } 
     this.hideTopRows();  
@@ -24,23 +24,31 @@ var view = {
 
   renderPiece: function(piece) {
     // set a class on the div that matches the piece's x and y coords
-    var x = piece.x;
-    var y = piece.y;
+    // var x = piece.x;
+    // var y = piece.y;
+    var blocks = piece.getBlocks();
+
 
     // remove class from previous block, regardless of location
-    $('.col-xs-1').removeClass('block');
+    $('.cell').removeClass('moving-block');
 
+    for(var i = 0; i < blocks.length; i++){
+      var block = blocks[i];
+      var divToAdd = $('[data-y=' + block.y + '][data-x=' + block.x + ']');
+      $(divToAdd).addClass('moving-block');
+    }
     // add class to current block
-    var divToAdd = $('[data-y=' + y + '][data-x=' + x + ']');
-    $(divToAdd).addClass('block');
+    
   },
 
-  stopPiece: function() {
-    var x = controller.currentPiece.x;
-    var y = controller.currentPiece.y;
+  stopPiece: function(piece) {
+    var blocks = piece.getBlocks();
 
-    var divToAdd = $('[data-y=' + y + '][data-x=' + x + ']');
-    $(divToAdd).addClass('full');
+    for(var i = 0; i < blocks.length; i++){
+      var block = blocks[i];
+      var divToAdd = $('[data-y=' + block.y + '][data-x=' + block.x + ']');
+      $(divToAdd).addClass('stopped-block');
+    }
   },
 
 
@@ -70,16 +78,16 @@ var view = {
     }); 
   }, 
 
-  getFullDivs: function(){
-    return $('.full')
+  getStoppedBlocks: function(){
+    return $('.stopped-block')
   },
 
   getColDivs: function(colNum){
-    return $('.full[data-x="' + colNum + '"]');
+    return $('.stopped-block[data-x="' + colNum + '"]');
   },
 
   getRowDivs: function(rowNum){
-    return $('.full[data-y="' + rowNum + '"]');
+    return $('.stopped-block[data-y="' + rowNum + '"]');
   }, 
 
   hideTopRows: function() {
